@@ -2,6 +2,7 @@
 *.sqlite3
 venv
 spwm.pem
-spwm/__pycache__/
-apps/__pycache__/
+*pyc
+media
+.env
 

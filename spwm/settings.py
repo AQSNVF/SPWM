@@ -24,9 +24,10 @@ INSTALLED_APPS = [
     'apps.empresas',
     'apps.funcionarios',
     'apps.departamentos',
-    'apps.documentos',
+    'apps.documentosfunc',
     'apps.registro_hora_extra',
     'apps.ws_spwm',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
@@ -97,3 +98,31 @@ STATICFILES_DIRS = [
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+LOGIN_REDIRECT_URL = 'home'
+
+LOGOUT_REDIRECT_URL = 'login'
+
+#
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file':{
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'debug.log',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level':'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }

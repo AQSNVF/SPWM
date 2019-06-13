@@ -1,7 +1,25 @@
 {% extends 'base.html' %}
 
 {% block main %}
-
-      Seja bem vindo
-
+        <div class="row">
+          <div class="col-sm">
+           <h4>Seja bem vindo ao SPWM</h4>
+          </div>
+          <div class="col-sm">
+              <a href="{% url 'list_funcionarios' %}">Gerenciar Funcionários</a><br>
+              <a href="{% url 'list_departamentos' %}">Gerenciar Departamentos</a><br>
+              <a href="{% url 'list_hora_extra' %}">Gerenciar Banco de Horas</a><br>
+          </div>
+          <div class="col-sm">
+              <h5>Usuario: </h5><h6>{{ usuario.funcionario.nome }}.</h6>
+              <h5>Empresa: </h5><h6>{{ usuario.funcionario.empresa }}.</h6><br>
+              <a href="{% url 'logout' %}">Logout</a><br>
+                  {% if usuario.funcionario.empresa %}
+                         <a href="{% url 'edit_empresa' usuario.funcionario.empresa.id %}">Editar Empresa</a><br>
+                  {% else %}
+                         <a href="{% url 'create_empresa' %}">Criar Empresa</a><br>
+                  {% endif %}
+              <a href="#">Sistema SPWM</a>
+          </div>
+        </div>
 {% endblock %}

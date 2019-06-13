@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+
+    <h2>Adicionar Funcionário e documentos</h2><br>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{ form|bootstrap }}
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+<br>
+{% if object %}
+     <a href="{% url 'create_documento_func' object.id %}"
+        class="btn btn-success">Adicionar  documento
+     </a>
+
+    <br>
+    <h4>Lista de documentos do funcionario.</h4>
+    <br>
+    {% for documentofunc in object.documentofunc_set.all %}
+
+         <a href="{{ documentofunc.arquivo.url }}"> {{ documentofunc }}</a>
+
+    <br>
+    {% endfor %}
+{% endif %}
+{% endblock %}
+
+

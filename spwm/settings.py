@@ -113,6 +113,8 @@ LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'login'
 
+
+
 #
 # LOGGING = {
 #     'version': 1,

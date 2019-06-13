@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #DEBUG = config('DEBUG', default=False, cast=bool)
 
-SECRET_KEY=d=rg*v#56ax%()eawsy$6id*)%$pjothi43#3z8th^j$kugr@p
+SECRET_KEY = 'd=rg*v#56ax%()eawsy$6id*)%$pjothi43#3z8th^j$kugr@p'
 
 DEBUG=True
 

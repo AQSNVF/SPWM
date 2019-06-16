@@ -6,7 +6,11 @@ from .views import (
     HoraExtraNovo,
 
     # AJAX
-    HoraExtraUtilizada
+    HoraExtraUtilizada,
+
+    # urls - CSV
+    Exportar_Para_CSV,
+    Exportar_Para_XLS
 )
 
 urlpatterns = [
@@ -16,7 +20,10 @@ urlpatterns = [
     path('Create/', HoraExtraNovo.as_view(), name='create_hora_extra'),
 
     # urls - AJAX
-    path('utilizada-hora-extra/<int:id>/', HoraExtraUtilizada.as_view(), name='utilizada_hora_extra')
+    path('utilizada-hora-extra/<int:id>/', HoraExtraUtilizada.as_view(), name='utilizada_hora_extra'),
 
+    # urls - CSV e XLS
+    path('exportar-csv/', Exportar_Para_CSV.as_view(), name='exportar_csv'),
+    path('exportar-xls/', Exportar_Para_XLS.as_view(), name='exportar_xls'),
 ]
 

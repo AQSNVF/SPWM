@@ -2,16 +2,22 @@
 {% load static %}
 {% load bootstrap %}
 
+{% block staticcss %}
+    <style>
+        .teste {
+        color: red;
+        }
+    </style>
+
+{% endblock %}
+
+
 
 {% block main %}
 
-
-<form method="post">
-    {% csrf_token %}
-    {{ form|bootstrap }}
-
-    <button type="submit" class="btn btn-outline-primary btn-sm">Salvar</button>
-</form>
+    <h2 class="teste">Relatorio Cadastro do  Funcionário</h2>
+    <h2>{{ sales }}</h2>
+ <a href=""class="btn btn-outline-primary btn-sm">Criar Empresa</a><br>
 
 {% endblock %}
 

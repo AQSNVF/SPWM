@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+
+{% block menu %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link " href="">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastros</a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item  active" href="list_funcionarios">Funcionarios</a>
+            <a class="dropdown-item" href="">Veiculos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="">Marca</a>
+            <a class="dropdown-item" href="">Parametros</a>
+            </div>
+        </li>    
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Planos de Serviços</a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item" href="">Plano Rotativo</a>
+            <a class="dropdown-item" href="">Plano Mensalista</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="">Movimento Rotativo</a>
+            <a class="dropdown-item" href="">Movimento Mensalista</a>
+            </div>
+        </li>    
+
+            <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link disabled" href="#">Desativado</a>
+            </li>
+    </ul>
+
+{% endblock %}
+
+
+{% block main %}
+
+<div class="row">
+    <div class="col-12">
+        <h1>Estacionamento ATIVA</h1><br>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+            <h2>Cadastro</h2><br>
+            <h6>Preencha para cadastrar um novo Cliente</h6><br>
+
+    </div>
+    <div class="col-sm-8">
+            <h2>Lista de Funcionarios</h2><br>
+        <h6>Clique no ID para selecionar o Cliente</h6>
+        <table class="table ">
+            <table class="table table-sm table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Telefone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for funcionario in funcionarios %}
+                    <tr>
+                    <th scope="row"><a href="{% url 'update_funcionario' funcionario.id %}">
+                            {{ funcionario.id }}</a></th>
+                    <td>{{ funcionario.nome }}</td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+             </table>
+        </table>
+        
+    </div> 
+</div>
+
+{% endblock %}

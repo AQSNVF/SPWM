@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load bootstrap %}
 
 
 {% block main %}
@@ -12,7 +14,7 @@
     <h3>{{ departamento.nome }}</h3>
     {{ form.as_p }}
 <br><br>
-    <button type="submit" class="outline-danger btn-sm">Confirmar</button>
+    <button type="submit" class="btn btn-outline-danger btn-sm">Confirmar</button>
 </form>
 
 {% endblock %}

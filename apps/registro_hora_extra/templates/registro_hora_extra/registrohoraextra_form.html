@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load bootstrap %}
 
 {% block main %}
@@ -11,14 +12,36 @@
 
     {{ form|bootstrap }}
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
+     <button type="submit" class="btn btn-outline-primary btn-sm">Salvar e voltar Cad Funcionario</button>
 
     {% if object %}
-         <a href="{% url 'delete_hora_extra' object.pk %}"class="btn btn-danger">
-           Deletar</button>
+         <a href="{% url 'delete_hora_extra' object.pk %}" class="btn btn-outline-danger btn-sm">
+           Deletar
+           </button>
          </a>
+
+
+        <button onclick="he_utilizada({{ object.id }})"
+                class="btn btn-outline-secondary btn-sm" type="button">
+             Marcar como utilizada
+        </button>
     {% endif %}
+
 </form>
+<br>
+
+<p id="mensagem"></p>
+
+Total de Horas no Banco:
+<h2 id="horas_atualizadas">{{ object.funcionario.total_horas_extra}}</h2>
+
+<br>
+
+{% endblock %}
+
+{% block static %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/funcoes_ajax.js' %}"></script>
 {% endblock %}
 
 

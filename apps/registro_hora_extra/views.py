@@ -1,4 +1,8 @@
+import json
+from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.views import View
+
 from .forms import RegistroHoraExtraForm
 from .models import RegistroHoraExtra
 from django.views.generic import (
@@ -15,19 +19,46 @@ class HoraExtraList(ListView):
         empresa_logada = self.request.user.funcionario.empresa
         return RegistroHoraExtra.objects.filter(funcionario__empresa=empresa_logada)
 
+
 class HoraExtraEdit(UpdateView):
     model = RegistroHoraExtra
-    fields = ['motivo', 'funcionario', 'horas']
+    form_class = RegistroHoraExtraForm
+
+
+    def get_form_kwargs(self):
+        kwargs = super(HoraExtraEdit, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
 
 class HoraExtraDelete(DeleteView):
-        model = RegistroHoraExtra
-        success_url = reverse_lazy('list_hora_extra')
+    model = RegistroHoraExtra
+    success_url = reverse_lazy('list_hora_extra')
+
 
 class HoraExtraNovo(CreateView):
-        model = RegistroHoraExtra
-        form_class = RegistroHoraExtraForm
+    model = RegistroHoraExtra
+    form_class = RegistroHoraExtraForm
 
-        def get_form_kwargs(self):
-            kwargs =super(HoraExtraNovo, self).get_form_kwargs()
-            kwargs.update({'user': self.request.user})
-            return kwargs
+
+    def get_form_kwargs(self):
+        kwargs = super(HoraExtraNovo, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
+
+class HoraExtraUtilizada(View):
+    def post(self, *args, **kwargs):
+
+        registro_hora_extra = RegistroHoraExtra.objects.get(pk=kwargs['id'])
+        registro_hora_extra.utilizada = True
+        registro_hora_extra.save()
+
+        empregado = self.request.user.funcionario
+
+        response = json.dumps(
+            {'mensagem': 'Horas Marcadas como Utilizadas',
+             'horas': float(empregado.total_horas_extra)}
+        )
+
+        return HttpResponse(response, content_type='application/json')

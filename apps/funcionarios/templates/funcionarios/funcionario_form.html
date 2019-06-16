@@ -3,31 +3,52 @@
 
 {% block main %}
 
-    <h2>Adicionar Funcionário e documentos</h2><br>
+    <h2>Cadastro do  Funcionário</h2>
 
+<br>
 <form method="POST">
 
     {% csrf_token %}
 
     {{ form|bootstrap }}
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="outline-primary btn-sm">Salvar e voltar para a listagem</button>
 </form>
 <br>
 {% if object %}
-     <a href="{% url 'create_documento_func' object.id %}"
-        class="btn btn-success">Adicionar  documento
-     </a>
-
+----------------------------------------------------------------
     <br>
     <h4>Lista de documentos do funcionario.</h4>
-    <br>
-    {% for documentofunc in object.documentofunc_set.all %}
 
-         <a href="{{ documentofunc.arquivo.url }}"> {{ documentofunc }}</a>
+    <ol>
+        {% for documentofunc in object.documentofunc_set.all %}
+            <li>
+                 <a href="{{ documentofunc.arquivo.url }}"> {{ documentofunc }}</a><br>
+            </li>
+        {% endfor %}
+     <a href="{% url 'create_documento_func' object.id %}"
+        class="outline-success btn-sm">Adicionar  documento
+     </a>
 
-    <br>
-    {% endfor %}
+    </ol>
+
+------------------------------------------------------------------
+ <br>
+    <h4>Banco de Horas.</h4>
+
+    <h5>Total de horas extras: {{ object.total_horas_extra }}</h5>
+    <ol>
+        {% for registro_he_func in object.registrohoraextra_set.all %}
+            <li>
+                 <a href="{% url 'update_hora_extra' registro_he_func.pk %}">
+                     {{ registro_he_func.motivo }} </a>| {{ registro_he_func.horas }}
+                 <br>
+            </li>
+        {% endfor %}
+    </ol>
+
+
+
 {% endif %}
 {% endblock %}
 

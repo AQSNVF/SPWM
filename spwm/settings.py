@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.registro_hora_extra',
     'apps.ws_spwm',
     'bootstrapform',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +115,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'login'
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'JSON'
+CELERY_TASK_SERIALIZER = 'json'
+
+
+
 #
 # LOGGING = {
 #     'version': 1,

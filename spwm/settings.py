@@ -17,7 +17,7 @@ DEBUG=True
 
 
 
-ALLOWED_HOSTS = ['18.216.162.32', '127.0.0.1']
+ALLOWED_HOSTS = ['18.216.162.32', '127.0.0.1','localhost']
 
 
 INSTALLED_APPS = [
@@ -123,6 +123,17 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 
+EMAIL_HOST = 'mail.ativa-qs.com.br'
+EMAIL_PORT = 465
+EMAIL_HOST_USER ='nelson.freire@ativa-qs.com.br'
+EMAIL_HOST_PASSWORD = 'Aristoteles@2019'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+# SERVER_EMAIL = 'nelson.freire@spwm.com.br'
+# TITULO_SITE = 'Activates Quality Solutions'
+# EMAIL_SUBJECT_PREFIX = 'Activates Quality Solutions '
+# DEFAULT_FROM_EMAIL = 'nelson.freire@activates.com.br'
+
 
 
 #
@@ -140,6 +151,46 @@ CELERY_TASK_SERIALIZER = 'json'
 #         'django': {
 #             'handlers': ['file'],
 #             'level':'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
+
+# AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = 'gestao-clientes'
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+# AWS_LOCATION = 'static'
+#
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#
+#
+
+#
+# #TODO: Endereço dos Templates do Admin
+# #/home/nvf/UDEMY/venv/lib/python3.6/site-packages/django/contrib/admin/templates/
+# # registration/password_change_form.html
+#
+#
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'debug.log',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',
 #             'propagate': True,
 #         },
 #     },

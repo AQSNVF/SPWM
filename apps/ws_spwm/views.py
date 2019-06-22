@@ -1,6 +1,8 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from apps.funcionarios.models import Funcionario
+from .tasks import send_relatorio
 
 
     # DjangoRest
@@ -15,6 +17,11 @@ def home(request):
     data = {}
     data['usuario'] = request.user
     return render(request, 'ws_spwm/index.html', data)
+
+
+def celery(request):
+    send_relatorio.delay()
+    return HttpResponse('SPWM incluiu esta tarefa na fila para execução')
 
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -21,7 +21,7 @@ def home(request):
 
 def celery(request):
     send_relatorio.delay()
-    return HttpResponse('SPWM incluiu esta tarefa na fila para execução')
+    return HttpResponse('SPWM incluiu esta tarefa na fila para execução por minutos seg 24/06 vcp -  -')
 
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -1,6 +1,7 @@
 .idea
 *.sqlite3
 venv
+.env
 spwm.pem
 *pyc
 media

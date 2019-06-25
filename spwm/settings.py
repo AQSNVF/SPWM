@@ -6,14 +6,9 @@ from dj_database_url import parse as dburl
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-#SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
-#DEBUG = config('DEBUG', default=False, cast=bool)
-
-SECRET_KEY = 'd=rg*v#56ax%()eawsy$6id*)%$pjothi43#3z8th^j$kugr@p'
-
-DEBUG=True
-
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 

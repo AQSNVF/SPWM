@@ -5,5 +5,11 @@ spwm.pem
 *pyc
 media
 static
+uwsgi.ini
+uwsgi.params
+*.bak
+*.dat
+*.pid
+*.dir
 
 

@@ -22,7 +22,7 @@ def send_relatorio():
     total = Funcionario.objects.all().count()
     send_mail(
         'Relatorio Celery',
-        'Meu 1° relatorio de funcionarios por minuto seg 24/06 vcp  -  %f' % total,
+        'Meu 1° relatorio de funcionarios por  25/06 maquina  -  %f' % total,
         'nelson.freire@ativa-qs.com.br',
         ['nelson.freire@spwm.com.br'],
         fail_silently=False,

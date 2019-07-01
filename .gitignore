@@ -13,7 +13,7 @@ uwsgi.params
 *.pid
 *.dir
 local_settings.py
-locale/*
+
 
 
 

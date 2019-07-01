@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load bootstrap %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-6"><br>
+            <div class="border-0" style="max-width: 18rem;">
+                 <h5 style="color:blue">Empresa: </h5><h6>{{ usuario.funcionario.empresa }}.</h6>
+            </div>
+        </div>
+        <div class="col-6"><br>
+            <div class="border-0"  style="max-width: 18rem;">
+                 <h5 style="color:blue">Usuario: </h5><h6>{{ usuario.funcionario.nome }}.</h6>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+<div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+             <div class="card-header bg-transparent border-primary">
+                 <h5 style="color:blue">
+                    <i class="fa fa-users" style="font-size:40px"></i>
+                     Funcionário
+                 </h5>
+             </div>
+              <div class="card-body text-primary">
+                  <ul>
+                    <li><h8 class="card-title">N° Funcionários      : {{ total_funcionarios }}</h8></li>
+                    <li><h8 class="card-title">N° Fun. de Férias    : {{ total_funcionarios_ferias }}</h8></li>
+                    <li><h8 class="card-title">N° Fun. c/ Pendencias: {{ total_funcionarios_doc_pendentes }}</h8></li>
+                  </ul>
+               </div>
+
+          </div>
+        </div>
+          <div class="col-sm">
+           <div class="card border-primary mb-3" style="max-width: 18rem;">
+              <div class="card-header bg-transparent border-primary">
+                 <h5 style="color:blue">
+                 <i class="fa fa-clock-o" style="font-size:40px"></i>
+                     Banco de Horas</h5>
+              </div>
+               <div class="card-body text-primary">
+                  <ul>
+                    <li><h8 class="card-title">H. Extras Pendentes: {{ total_hora_extra_pendentes }}</h8></li>
+                    <li><h8 class="card-title">H. Extras Utilizadas: {{ total_hora_extra_utilizadas }}</h8></li>
+                    <li><h8 class="card-title">Total H. Extras : {{ total_hora_extra }}</h8></li>
+                  </ul>
+               </div>
+
+
+          </div>
+
+          </div>
+          <div class="col-sm">
+           <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header bg-transparent border-primary">
+                 <h5 style="color:blue">
+                <i class="fa fa-copy" style="font-size:40px"></i>
+                     Documentos
+                 </h5></div>
+                <div class="card-body text-primary">
+                  <ul>
+                    <li><h8 class="card-title">N° Func.s/ pendencias     : {{ total_funcionarios_doc_ok }}</h8></li>
+                    <li><h8 class="card-title">N° Fun. doc. faltante    : {{ total_funcionarios_doc_pendentes }}</h8></li>
+                    <li><h8 class="card-title">N° Fun. c/CPF: {{ total_funcionarios_cpf }}</h8></li>
+                  </ul>
+               </div>
+
+          </div>
+        </div>
+{% endblock %}
+
+{% block static %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+{% endblock %}

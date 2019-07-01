@@ -2,8 +2,13 @@
 {% load static %}
 {% load bootstrap %}
 
+ {% block menu %}
+
+ {% endblock %}
+
+
 {% block main%}
-<h1>Faça o login e conheça o SPWM.</h1>
+<h3>Faça o login e conheça o SPWM.</h3>
 
     <form method="post">
         {% csrf_token %}

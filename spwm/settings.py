@@ -1,15 +1,10 @@
 import os
 from decouple import config
 from dj_database_url import parse as dburl
+from django.utils.translation import ugettext_lazy as _
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-SECRET_KEY = config('SECRET_KEY')
-
-DEBUG = config('DEBUG', default=False, cast=bool)
-
 
 
 ALLOWED_HOSTS = ['18.216.162.32', '127.0.0.1','localhost']
@@ -29,15 +24,18 @@ INSTALLED_APPS = [
     'apps.departamentos',
     'apps.documentosfunc',
     'apps.registro_hora_extra',
-    'apps.ws_spwm',
+    'apps.spwm_ws',
     'bootstrapform',
     'django_celery_results',
     'django_celery_beat',
+    'apps.spwm_welding',
+    'apps.spwm_pipe_cleaning'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -58,6 +56,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -65,11 +64,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'spwm.wsgi.application'
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-
-DATABASES = {
-    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
-    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -109,22 +103,33 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 LOGIN_REDIRECT_URL = 'home'
+#LOGIN_REDIRECT_URL = 'admin/login'
 
 LOGOUT_REDIRECT_URL = 'login'
 
 CELERY_RESULT_BACKEND = 'django-db'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
+
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 
-EMAIL_HOST = 'mail.ativa-qs.com.br'
-EMAIL_PORT = 465
-EMAIL_HOST_USER ='nelson.freire@ativa-qs.com.br'
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
+from .local_settings import *
+
+#
+# LANGUAGES = (
+#     ('en', _('English')),
+#     ('pt', _('Portugues')),
+#     ('es', _('Spanish')),
+# )
+#
+# LOCALE_PATHS = (
+#     os.path.join(BASE_DIR, 'locale'),
+# )
+#
+
+
+
 # SERVER_EMAIL = 'nelson.freire@spwm.com.br'
 # TITULO_SITE = 'Activates Quality Solutions'
 # EMAIL_SUBJECT_PREFIX = 'Activates Quality Solutions '

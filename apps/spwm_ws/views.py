@@ -31,13 +31,13 @@ def home(request):
     data['total_funcionarios_doc_pendentes'] = funcionario.empresa.total_funcionarios_doc_pendentes
     data['total_funcionarios_doc_ok'] = funcionario.empresa.total_funcionarios_doc_ok
     data['total_funcionarios_cpf'] = Funcionario.objects.all().count()
-    data['total_hora_extra'] = (
-             RegistroHoraExtra.objects.filter(
-             funcionario__empresa=funcionario.empresa, utilizada=True).aggregate(
-                 Sum('horas'))['horas__sum']) + (
-             RegistroHoraExtra.objects.filter(
-             funcionario__empresa=funcionario.empresa, utilizada=False).aggregate(
-                 Sum('horas'))['horas__sum'])
+    # data['total_hora_extra'] = (
+    #          RegistroHoraExtra.objects.filter(
+    #          funcionario__empresa=funcionario.empresa, utilizada=True).aggregate(
+    #              Sum('horas'))['horas__sum']) + (
+    #          RegistroHoraExtra.objects.filter(
+    #          funcionario__empresa=funcionario.empresa, utilizada=False).aggregate(
+    #              Sum('horas'))['horas__sum'])
     data['total_hora_extra_utilizadas'] = RegistroHoraExtra.objects.filter(
         funcionario__empresa=funcionario.empresa, utilizada=True).aggregate(Sum('horas'))['horas__sum']
     data['total_hora_extra_pendentes'] = RegistroHoraExtra.objects.filter(

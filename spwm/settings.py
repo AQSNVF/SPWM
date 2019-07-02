@@ -11,7 +11,7 @@ ALLOWED_HOSTS = [
     '18.216.162.32',
     '127.0.0.1',
     'localhost',
-    'www.spwm.com.br'
+    'spwm.com.br'
 ]
 
 

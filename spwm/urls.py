@@ -4,7 +4,7 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-
+from django.contrib.auth import urls
     # DjangoRest
 from rest_framework import routers
 from apps.spwm_ws import views

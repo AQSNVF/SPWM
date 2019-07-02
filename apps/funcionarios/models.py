@@ -5,6 +5,8 @@ from apps.departamentos.models import Departamento
 from apps.empresas.models import Empresa
 from django.db.models import Sum
 
+from django.core.mail import send_mail
+
 
 class Funcionario(models.Model):
     nome = models.CharField(max_length=100)
@@ -27,6 +29,19 @@ class Funcionario(models.Model):
             utilizada=False).aggregate(
             Sum('horas'))['horas__sum']
         return total or 0
+
+
+    def save(self, *args, **kwargs):
+        super(Funcionario, self).save(*args, **kwargs)
+
+        send_mail(
+            'Novo Funcionário Cadastrado teste 2 emails',
+            'O Funcionário %s foi cadastrado no SPWM' % self.nome,
+            'nelson.freire@ativa-qs.com.br',
+            ['nelson.freire@ativa-qs.com.br', 'nelson.freire@spwm.com.br'],
+            fail_silently=False
+        )
+
 
     def __str__(self):
         return self.nome

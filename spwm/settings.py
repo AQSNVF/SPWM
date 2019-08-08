@@ -14,14 +14,31 @@ ALLOWED_HOSTS = [
     'spwm.com.br'
 ]
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.microsoft',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.google',
+
     'rest_framework',
     'rest_framework.authtoken',
     'apps.empresas',
@@ -34,8 +51,11 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     'apps.spwm_welding',
-    'apps.spwm_pipe_cleaning'
+    'apps.spwm_pipe_cleaning',
+    'debug_toolbar',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -46,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'spwm.urls'
@@ -68,6 +89,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'spwm.wsgi.application'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -107,8 +133,9 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-LOGIN_REDIRECT_URL = 'home'
-#LOGIN_REDIRECT_URL = 'admin/login'
+LOGIN_URL = 'home'
+
+LOGIN_REDIRECT_URL = 'login/'
 
 LOGOUT_REDIRECT_URL = 'login'
 
